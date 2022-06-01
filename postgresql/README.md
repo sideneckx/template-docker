@@ -1,6 +1,6 @@
 # Instruction for newbie
 - By default, when you put the environment:
-```Docker
+```properties
 environment:
 	- POSTGRES_USER=postgres
 	- POSTGRES_PASSWORD=postgres
@@ -8,11 +8,11 @@ environment:
 ```
 It's will create a user, password, schema with the given name "postgres"
 - Start postgres docker with command:
-```bash
+```properties
 make up
 ```
 - And end it with command:
-```bash
+```properties
 make down
 ```
 
