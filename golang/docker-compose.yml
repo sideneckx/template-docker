@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  go-program:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: go-program
+    container_name: go-cont
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: ./
+        target: /docker-test
+    stdin_open: true
+    # tty: true
+    privileged: true
