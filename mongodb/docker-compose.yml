@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:5.0.9
+    restart: always
+    container_name: mongodb-cont
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=sample
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: ./mongodb
+        target: /data/db
+
+# mongodb://root:example@0.0.0.0:27017
