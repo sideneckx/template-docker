@@ -1,0 +1,5 @@
+FROM golang:1.18.2-alpine3.15
+WORKDIR /go-dir
+ADD ./src/go.mod /go-dir
+
+RUN go mod download
