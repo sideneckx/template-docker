@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:11.2.2
+    restart: always
+    container_name: gokien-db
+    ports:
+      - 3001:3306
+    environment:
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=<your_user_password>
+      # - MARIADB_ROOT_PASSWORD=<your_root_password>
+      - MARIADB_DATABASE=wp
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - default
+  
+  wp:
+    image: wordpress:php8.3-apache
+    container_name: gokien-wp
+    restart: always
+    ports:
+      - 3000:80
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=admin
+      - WORDPRESS_DB_PASSWORD=<your_user_password>
+      - WORDPRESS_DB_NAME=wp
+    volumes:
+      - ./wp:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - default
